@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Sell</title> {% load static %}
+    <link href="{% static 'sell.css' %}" rel="stylesheet">
+</head>
+
+<body>
+    <nav>
+        <p id="home">Cars N Bikes</p>
+    </nav>
+    <h1>Vehicle Details</h1>
+    <form id="details" action="./sell/" method="post"> {% csrf_token %} {{ form.as_p|safe|escapejs }} <input
+            type="submit">
+    </form>
+    <script>
+        document.getElementById("home").addEventListener('click', (e) => {
+            window.location = "/store"
+        })
+        let contact = document.querySelector("input[name='Contact']");
+        contact.addEventListener("input", () => {
+            contact.setCustomValidity("");
+            contact.checkValidity();
+        });
+        contact.addEventListener("invalid", () => {
+            contact.setCustomValidity("Please enter a valid mobile number!")
+        })
+    </script>
+</body>
+
+</html>
